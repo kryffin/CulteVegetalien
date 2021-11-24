@@ -523,7 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treePrefab: {fileID: 5220510253924610553, guid: 5e6070a2a0f30904486f3674364fc17e, type: 3}
   path: Assets/Data/abr_arbres_alignement.abrarbre.json
-  spaceBetweenTrees: 1000
+  spaceBetweenTrees: 100
   treeScale: 0.02
 --- !u!4 &2032612787
 Transform:
