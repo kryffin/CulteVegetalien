@@ -6,7 +6,8 @@ public class PlaceTrees : MonoBehaviour
     private List<GameObject> _trees;
 
     public GameObject treePrefab;
-    public string path;
+    //public string path;
+    public List<string> paths;
     public float spaceBetweenTrees = 1000;
     public float treeScale = 0.02f;
 
@@ -15,7 +16,8 @@ public class PlaceTrees : MonoBehaviour
         _trees = new List<GameObject>();
         Vector3 mean = Vector3.zero;
 
-        GeoJSonParser parser = new GeoJSonParser(path);
+        //GeoJSonParser parser = new GeoJSonParser(path);
+        GeoJSonParser parser = new GeoJSonParser(paths);
         parser.Parse();
 
         foreach (TreeStruct ts in parser.trees)
@@ -37,6 +39,12 @@ public class PlaceTrees : MonoBehaviour
 
         foreach (GameObject tree in _trees)
             tree.transform.position = tree.transform.position - mean;
+
+        Debug.Log(parser.zones.Count);
+        foreach(ZoneStruct zs in parser.zones)
+        {
+            Debug.Log(zs.geometry.coordinates);
+        }
     }
 
 
