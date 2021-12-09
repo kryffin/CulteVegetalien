@@ -522,12 +522,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treePrefab: {fileID: 5220510253924610553, guid: 5e6070a2a0f30904486f3674364fc17e, type: 3}
-  path: Assets/Data/abr_arbres_alignement.abrarbre.json
   paths:
   - Assets/Data/abr_arbres_alignement.abrarbre.json
   - Assets/Data/EVA2015_STR_Extrait.json
   spaceBetweenTrees: 100
   treeScale: 0.02
+  mat: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  colorPoly: {r: 0, g: 1, b: 0.19758415, a: 0}
+  colorCurve: {r: 0, g: 1, b: 0.10835743, a: 0}
 --- !u!4 &2032612787
 Transform:
   m_ObjectHideFlags: 0
