@@ -8,13 +8,9 @@ public class PlaceTrees : MonoBehaviour
 
     public GameObject treePrefab;
     //public string path;
-    public List<string> paths;
+    public string path;
     public float spaceBetweenTrees = 1000;
     public float treeScale = 0.02f;
-
-    public Material mat;
-    public Color colorPoly;
-    public Color colorCurve;
 
     private void Start()
     {
@@ -22,8 +18,8 @@ public class PlaceTrees : MonoBehaviour
         Vector3 mean = Vector3.zero;
 
         //GeoJSonParser parser = new GeoJSonParser(path);
-        GeoJSonParser parser = new GeoJSonParser(paths);
-        parser.Parse();
+        GeoJSonParser parser = new GeoJSonParser();
+        parser.Parse(path, 0);
 
         foreach (TreeStruct ts in parser.trees)
         {
@@ -45,40 +41,6 @@ public class PlaceTrees : MonoBehaviour
         foreach (GameObject tree in _trees)
             tree.transform.position = tree.transform.position - mean;
 
-
-        Vector3 meanZone = Vector3.zero;
-
-        int count = 0;
-        foreach (List<Vector3> zs in parser.zones)
-        {
-            foreach (Vector3 pointPos in zs)
-            {
-                meanZone += pointPos / spaceBetweenTrees;
-                count += 1;
-            }
-        }
-        meanZone /= count;
-
-        foreach (List<Vector3> zs in parser.zones)
-        {
-            LineRenderer lineRenderer;
-            lineRenderer = new GameObject(this.name + "Line").AddComponent<LineRenderer>();
-            lineRenderer.startColor = colorPoly;
-            lineRenderer.endColor = colorPoly;
-            lineRenderer.startWidth = 0.1f;
-            lineRenderer.endWidth = 0.1f;
-            lineRenderer.useWorldSpace = true;
-            lineRenderer.material = mat;
-            lineRenderer.material.SetColor("_Color", colorPoly);
-            int lengthOfLineRenderer = zs.Count;
-            lineRenderer.positionCount = lengthOfLineRenderer;
-            for (int i = 0; i < zs.Count; i++)
-            {
-                lineRenderer.SetPosition(i, (zs[i]/spaceBetweenTrees)-meanZone);
-            }
-            
-
-        }
     }
 
 

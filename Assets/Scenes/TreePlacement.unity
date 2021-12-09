@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134315272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
@@ -300,6 +300,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1050522488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1050522490}
+  - component: {fileID: 1050522489}
+  m_Layer: 0
+  m_Name: Zone Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1050522489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050522488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a31aa3674a1a33479e8577040bf9065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets\Data\EVA2015_STR_Extrait.json
+  scale: 100
+  mat: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 1, b: 0.0022239685, a: 1}
+    key1: {r: 0, g: 1, b: 0.0022239685, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!4 &1050522490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050522488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 31.905905, y: 0.84856844, z: -6.3603754}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1085545803
 GameObject:
@@ -522,14 +597,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treePrefab: {fileID: 5220510253924610553, guid: 5e6070a2a0f30904486f3674364fc17e, type: 3}
-  paths:
-  - Assets/Data/abr_arbres_alignement.abrarbre.json
-  - Assets/Data/EVA2015_STR_Extrait.json
+  path: C:\Users\mlegal1\Documents\Virtual_World\CulteVegetalien\Assets\Data\abr_arbres_alignement.abrarbre.json
   spaceBetweenTrees: 100
   treeScale: 0.02
-  mat: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  colorPoly: {r: 0, g: 1, b: 0.19758415, a: 0}
-  colorCurve: {r: 0, g: 1, b: 0.10835743, a: 0}
 --- !u!4 &2032612787
 Transform:
   m_ObjectHideFlags: 0

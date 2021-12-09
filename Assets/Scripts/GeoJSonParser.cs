@@ -62,7 +62,6 @@ public class GeoJSonParser
     /*
     * Path to the data file
     * */
-    private string path;
     private List<string> paths;
 
     [HideInInspector]
@@ -75,14 +74,55 @@ public class GeoJSonParser
      * Constructor of the GeoJsonParser class
      * parameters string path_ : the path to the data file 
      * */
-    public GeoJSonParser(string path_)
+    public GeoJSonParser()
     {
-        path = path_;
     }
 
     public GeoJSonParser(List<string> paths_)
     {
         paths = paths_;
+    }
+
+    public void Parse(string path, int type)
+    {
+        StreamReader reader = new StreamReader(path);
+        string geojson = reader.ReadToEnd();
+        switch (type)
+        {
+            case 0:
+                FileStruct fileStruct = JsonUtility.FromJson<FileStruct>(geojson);
+                foreach (TreeStruct tree in fileStruct.features)
+                {
+                    trees.Add(tree);
+                }
+
+                break;
+            case 1:
+                //https://github.com/timokorkalainen/Unity-GeoJSONObject
+
+                GeoJSON.FeatureCollection collection = GeoJSON.GeoJSONObject.Deserialize(geojson);
+                foreach (FeatureObject feature in collection.features)
+                {
+
+                    List<Vector3> zone = new List<Vector3>();
+                    foreach (var posObj in feature.geometry.AllPositions())
+                    {
+                        if (posObj is PositionObjectV3 pos3d)
+                        {
+                            //Debug.Log(pos3d.position);
+                            zone.Add(pos3d.position);
+                        }
+                    }
+                    zones.Add(zone);
+                }
+
+                break;
+            default:
+                Debug.LogError("Erreur de parsing");
+                break;
+        }
+
+
     }
 
     public void Parse()
@@ -108,9 +148,6 @@ public class GeoJSonParser
                     /*ZoneFileStruct zoneFileStruct = JsonUtility.FromJson<ZoneFileStruct>(geojson);
                     foreach (ZoneStruct zone in zoneFileStruct.features)
                     {
-                        
-
-
                         zones.Add(zone);
                     }*/
                    
