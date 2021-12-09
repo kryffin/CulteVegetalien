@@ -39,11 +39,18 @@ public class PlaceTrees : MonoBehaviour
 
         foreach (GameObject tree in _trees)
             tree.transform.position = tree.transform.position - mean;
-
+        LineRenderer lineR = this.gameObject.AddComponent<LineRenderer>();
         Debug.Log(parser.zones.Count);
-        foreach(ZoneStruct zs in parser.zones)
+        foreach(List<Vector3> zs in parser.zones)
         {
-            Debug.Log(zs.geometry.coordinates);
+
+            lineR.positionCount = zs.Count;
+            for(int i = 0; i < zs.Count; i++)
+            {
+                lineR.SetPosition(i, zs[i]);
+            }
+            
+
         }
     }
 

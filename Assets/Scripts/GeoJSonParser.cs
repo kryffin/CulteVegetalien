@@ -1,3 +1,4 @@
+using GeoJSON;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,54 +10,6 @@ public struct FileStruct
     public string type;
     public string name;
     public TreeStruct[] features;
-}
-
-[System.Serializable]
-public struct ZoneFileStruct
-{
-    public string type;
-    public string name;
-    public CrsStruct crs;
-    public ZoneStruct[] features;
-}
-
-[System.Serializable]
-public struct CrsStruct
-{
-    public string type;
-    public CrsNameStruct properties;
-}
-
-public struct CrsNameStruct
-{
-    public string name;
-}
-
-[System.Serializable]
-public struct ZoneStruct
-{
-    public string type;
-    public ZoneProperties properties;
-    public ZoneGeometry geometry;
-}
-
-
-[System.Serializable]
-public struct ZoneProperties
-{
-    public float OBJECTID;
-    public float gl_2015;
-    public string libelles;
-    public int strate;
-    public float Shape_Leng;
-    public float Shape_Area;
-}
-
-[System.Serializable]
-public struct ZoneGeometry
-{
-    public string type;
-    public double[][][][] coordinates;
 }
 
 [System.Serializable]
@@ -116,7 +69,7 @@ public class GeoJSonParser
     public List<TreeStruct> trees = new List<TreeStruct>();
 
     [HideInInspector]
-    public List<ZoneStruct> zones = new List<ZoneStruct>();
+    public List<List<Vector3>> zones = new List<List<Vector3>>();
 
     /*
      * Constructor of the GeoJsonParser class
@@ -152,14 +105,32 @@ public class GeoJSonParser
                 case 1:
                     //CA MARCHE PAS CAR NESTED ARRAY
                     //TODO : https://github.com/timokorkalainen/Unity-GeoJSONObject
-                    ZoneFileStruct zoneFileStruct = JsonUtility.FromJson<ZoneFileStruct>(geojson);
+                    /*ZoneFileStruct zoneFileStruct = JsonUtility.FromJson<ZoneFileStruct>(geojson);
                     foreach (ZoneStruct zone in zoneFileStruct.features)
                     {
                         
 
 
                         zones.Add(zone);
+                    }*/
+                   
+                    GeoJSON.FeatureCollection collection = GeoJSON.GeoJSONObject.Deserialize(geojson);
+                    foreach (FeatureObject feature in collection.features)
+                    {
+
+                        List<Vector3> zone = new List<Vector3>();
+                        foreach (var posObj in feature.geometry.AllPositions())
+                        {
+                            if (posObj is PositionObjectV3 pos3d)
+                            {
+                                //Debug.Log(pos3d.position);
+                                zone.Add(pos3d.position);
+                            }
+                        }
+                        zones.Add(zone);  
                     }
+                    
+
 
                     break;
                 default:
